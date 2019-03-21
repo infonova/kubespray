@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM grzosdocker01.infonova.at/infonova/platform:2.0-SNAPSHOT
 
 RUN mkdir /kubespray
 WORKDIR /kubespray
@@ -14,6 +14,7 @@ RUN  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && 
      && apt update -y && apt-get install docker-ce -y
 COPY . .
 RUN /usr/bin/python -m pip install pip -U && /usr/bin/python -m pip install -r tests/requirements.txt && python -m pip install -r requirements.txt
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.3/bin/linux/amd64/kubectl \
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.13.4/bin/linux/amd64/kubectl \
     && chmod a+x kubectl && cp kubectl /usr/local/bin/kubectl
 
+WORKDIR /ansible/com.infonova.opss.devopss/platform/2.0-SNAPSHOT/
