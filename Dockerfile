@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM grzosdocker01.infonova.at/infonova/platform:2.0-SNAPSHOT
 
 RUN mkdir /kubespray
 WORKDIR /kubespray
@@ -17,3 +17,4 @@ RUN /usr/bin/python -m pip install pip -U && /usr/bin/python -m pip install -r t
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.3/bin/linux/amd64/kubectl \
     && chmod a+x kubectl && cp kubectl /usr/local/bin/kubectl
 
+WORKDIR /ansible/com.infonova.opss.devopss/platform/2.0-SNAPSHOT/
