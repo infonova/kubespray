@@ -1,0 +1,27 @@
+version: "1"
+rules:
+  - base: master
+    upstream: kubernetes-sigs:master
+    mergeMethod: hardreset
+
+#
+# Do not create pull requests for merging stuff into devel branch until an appropriate
+# rebasing mechanism has been implemented or different app/bot used for that (merge does not cut it for us).
+#
+# The mechanism should do something like this:
+# ```
+#   git checkout implement-snap-packaging
+#   git rebase master
+#   git push --force
+# ```
+#
+# Infos on that: 
+#  * https://github.com/wei/pull/issues/107
+#  * https://github.com/tibdex/github-rebase#step-by-step
+#
+
+#  - base: devel-INFONOVA-X
+#    upstream: master
+#    mergeMethod: none
+#    reviewers:
+#      - infonova/sips-dp
