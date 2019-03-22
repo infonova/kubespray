@@ -1,0 +1,10 @@
+version: "1"
+rules:
+  - base: master
+    upstream: kubernetes-sigs:master
+    mergeMethod: hardreset
+  - base: devel-INFONOVA-X
+    upstream: master
+    mergeMethod: rebase
+    reviewers:
+      - infonova/sips-dp
