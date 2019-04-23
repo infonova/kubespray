@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: localhost_group
   gather_facts: false
   become: no
   tasks:
