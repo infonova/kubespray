@@ -88,6 +88,7 @@ helm_version: "v3.5.3"
 # Get kubernetes major version (i.e. 1.17.4 => 1.17)
 kube_major_version: "{{ kube_version | regex_replace('^v([0-9])+\\.([0-9]+)\\.[0-9]+', 'v\\1.\\2') }}"
 crictl_supported_versions:
+  v1.20: "v1.20.0"
   v1.19: "v1.19.0"
   v1.18: "v1.18.0"
 crictl_version: "{{ crictl_supported_versions[kube_major_version] }}"
@@ -105,12 +106,15 @@ helm_download_url: "https://get.helm.sh/helm-{{ helm_version }}-linux-{{ image_a
 
 crictl_checksums:
   arm:
+    v1.20.0: ed5ffdd386261ec1146731421d4ac9c5c7f91e08486fee409452a3364bef792a
     v1.19.0: b72fd3c4b35f60f5db2cfcd8e932f6000cf9c2978b54adfcf60ee5e2d452e92f
     v1.18.0: d420925d10b47a234b7e51e9cf1039c3c09f2703945a99435549fcdd7487ae3a
   arm64:
+    v1.20.0: eda6879710eb046d335162d4afe8494c6f8161142ad3188022852f64b92806a8
     v1.19.0: ec040d14ca03e8e4e504a85dae5353e04b5d9d8aea3df68699258992c0eb8d88
     v1.18.0: 95ba32c47ad690b1e3e24f60255273dd7d176e62b1a0b482e5b44a7c31639979
   amd64:
+    v1.20.0: 44d5f550ef3f41f9b53155906e0229ffdbee4b19452b4df540265e29572b899c
     v1.19.0: 87d8ef70b61f2fe3d8b4a48f6f712fd798c6e293ed3723c1e4bbb5052098f0ae
     v1.18.0: 876dd2b3d0d1c2590371f940fb1bf1fbd5f15aebfbe456703ee465d959700f4a
 
