@@ -25,3 +25,5 @@ override_system_hostname: true
 is_fedora_coreos: false
 
 skip_http_proxy_on_os_packages: false
+
+skip_http_proxy_on_os_package_repos: []

@@ -43,6 +43,19 @@
     - need_https_proxy.rc != 0
     - not skip_http_proxy_on_os_packages
 
+# Note(ederst): Do not use proxy for internal APT repos [1]:
+#   Acquire::http::Proxy::repo.internal.local DIRECT;
+#
+# [1]: https://www.claudiokuenzler.com/blog/619/apt-behind-proxy-no-proxy-for-some-repositories
+- name: "Add repos ignoring HTTP proxies to /etc/apt/apt.conf when using them"
+  raw: echo 'Acquire::http::Proxy::{{ item }} DIRECT;' >> /etc/apt/apt.conf
+  become: true
+  loop: "{{ skip_http_proxy_on_os_package_repos }}"
+  when:
+    - https_proxy is defined or https_proxy is defined
+    - need_https_proxy.rc != 0 or need_https_proxy.rc != 0
+    - not skip_http_proxy_on_os_packages
+
 - name: Check Network Name Resolution configuration
   raw: grep '^DNSSEC=allow-downgrade' /etc/systemd/resolved.conf
   register: need_dnssec_allow_downgrade
