@@ -2,6 +2,13 @@
 - name: Check ansible version
   import_playbook: ansible_version.yml
 
+# Note(ederst):
+#   We need to gather facts before calling `kubespray-defaults` b/c `no_proxy.yml` uses `ansible_hostname`
+#   which is a gathered fact.
+- name: Gather facts
+  tags: always
+  import_playbook: facts.yml
+
 - hosts: bastion[0]
   gather_facts: False
   environment: "{{ proxy_disable_env }}"
@@ -17,10 +24,6 @@
   roles:
     - { role: kubespray-defaults }
     - { role: bootstrap-os, tags: bootstrap-os}
-
-- name: Gather facts
-  tags: always
-  import_playbook: facts.yml
 
 - hosts: k8s-cluster:etcd
   gather_facts: False
