@@ -31,6 +31,11 @@
     loop_control:
       loop_var: included_tasks_file
 
+- name: Install system packages
+  import_role:
+    name: system_packages
+  tags:
+  - system-packages
 
 - name: Create remote_tmp for it is used by another module
   file:
@@ -47,13 +52,6 @@
   hostname:
     name: "{{ inventory_hostname }}"
   when: override_system_hostname
-
-- name: Install ceph-commmon package
-  package:
-    name:
-    - ceph-common
-    state: present
-  when: rbd_provisioner_enabled | default(false)
 
 - name: Ensure bash_completion.d folder exists
   file:
